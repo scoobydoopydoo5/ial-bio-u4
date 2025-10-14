@@ -249,7 +249,7 @@ export function SubjectsPage({
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
-              placeholder="Search subjects..."
+              placeholder="Search topics..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -271,7 +271,7 @@ export function SubjectsPage({
               <SelectValue placeholder="Filter by" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Subjects</SelectItem>
+              <SelectItem value="all">All Topics</SelectItem>
               <SelectItem value="not-started">Not Started</SelectItem>
               <SelectItem value="in-progress">In Progress</SelectItem>
               <SelectItem value="completed">Completed</SelectItem>

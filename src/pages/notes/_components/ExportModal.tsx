@@ -146,7 +146,7 @@ export function ExportModal({
             <RadioGroup value={exportScope} onValueChange={setExportScope}>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="all-subjects" id="all-subjects" />
-                <Label htmlFor="all-subjects">Export all subjects</Label>
+                <Label htmlFor="all-subjects">Export all Topics</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="current-subject" id="current-subject" />

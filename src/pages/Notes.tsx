@@ -1278,7 +1278,7 @@ export function NotesPage({ subject, onBack }: NotesPageProps) {
                                       highlights.length + savedContent.length
                                     } saved items`
                                   : chapter.id === "home"
-                                  ? "Course overview"
+                                  ? "Topic overview"
                                   : `${chapter.lessons.length} lessons`}
                               </p>
                             </div>

@@ -386,7 +386,23 @@ const PastPapersChecklist = () => {
                               </a>
                             </Button>
                           )}
-
+                          {paper.examiner_report_url && (
+                            <Button
+                              variant="outline"
+                              className="w-full"
+                              size="sm"
+                              asChild
+                            >
+                              <a
+                                href={paper.examiner_report_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <MessageSquare className="mr-2 h-4 w-4" />
+                                Examiner Report
+                              </a>
+                            </Button>
+                          )}
                           <Button
                             variant="outline"
                             className="w-full"

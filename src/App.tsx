@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { StyleProvider } from "./contexts/StyleContext";
 import { ThreadAuthProvider } from "./contexts/ThreadAuthContext";
+import { Analytics } from "@vercel/analytics/next";
 import Index from "./pages/Index";
 import Checklist from "./pages/Checklist";
 import PastPapersChecklist from "./pages/PastPapersChecklist";
@@ -30,6 +31,7 @@ const App = () => (
         cull="MuiSvgIcon-root,MuiButton-root"
         level={6}
       />{" "}
+      <Analytics />
       <StyleProvider>
         <ThreadAuthProvider>
           <TooltipProvider>

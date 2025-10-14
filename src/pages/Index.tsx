@@ -6,6 +6,7 @@ import {
   MessageCircle,
   FileText,
   Timer,
+  Notebook,
 } from "lucide-react";
 import { ThemeControls } from "@/components/ThemeControls";
 import { StarsBackground } from "@/components/ui/stars-background";
@@ -41,7 +42,10 @@ const Index = () => {
             </Button>
           </Link>{" "}
           <Link to="/checklist">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 text-lg px-8 py-6 w-full sm:w-auto">
+            <Button
+              variant="outline"
+              className="gap-2 text-lg px-8 py-6 w-full sm:w-auto"
+            >
               Syllabus Checklist
               <CheckSquare className="w-5 h-5" />
             </Button>
@@ -54,7 +58,16 @@ const Index = () => {
               <FileText className="w-5 h-5" />
               Past Papers
             </Button>
-          </Link>
+          </Link>{" "}
+          <Link to="/notes">
+            <Button
+              variant="outline"
+              className="gap-2 text-lg px-8 py-6 w-full sm:w-auto"
+            >
+              <Notebook className="w-5 h-5" />
+              Notes
+            </Button>
+          </Link>{" "}
           {/* 
           <Link to="/threads">
             <Button variant="outline" className="gap-2 text-lg px-8 py-6 w-full sm:w-auto">

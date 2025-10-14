@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { StyleProvider } from "./contexts/StyleContext";
 import { ThreadAuthProvider } from "./contexts/ThreadAuthContext";
-import { Analytics } from "@vercel/analytics/next";
 import Index from "./pages/Index";
 import Checklist from "./pages/Checklist";
 import PastPapersChecklist from "./pages/PastPapersChecklist";
@@ -18,11 +17,14 @@ import NotFound from "./pages/NotFound";
 import MouseParticles from "react-mouse-particles";
 import NoOldSyllabus from "./pages/NoOldSyllabus";
 import Planner from "./pages/Timer";
+import NotesRouter from "./pages/NotesRouter";
+import { ThemeProviderer } from "./hooks/useTheme";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    {" "}
     <ThemeProvider>
       {" "}
       <MouseParticles
@@ -31,32 +33,34 @@ const App = () => (
         cull="MuiSvgIcon-root,MuiButton-root"
         level={6}
       />{" "}
-      <Analytics />
-      <StyleProvider>
-        <ThreadAuthProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/checklist" element={<Checklist />} />{" "}
-                <Route path="/timer" element={<Planner />} />{" "}
-                <Route path="/no-old-syllabus" element={<NoOldSyllabus />} />
-                <Route
-                  path="/pastpapers-checklist"
-                  element={<PastPapersChecklist />}
-                />
-                <Route path="/threads" element={<Threads />} />
-                <Route path="/threads/:slug" element={<ThreadDetail />} />
-                <Route path="/community/:slug" element={<Community />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </TooltipProvider>
-        </ThreadAuthProvider>
-      </StyleProvider>
+      <ThemeProviderer>
+        <StyleProvider>
+          <ThreadAuthProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/notes/*" element={<NotesRouter />} />
+                  <Route path="/" element={<Index />} />
+                  <Route path="/checklist" element={<Checklist />} />{" "}
+                  <Route path="/timer" element={<Planner />} />{" "}
+                  <Route path="/no-old-syllabus" element={<NoOldSyllabus />} />
+                  <Route
+                    path="/pastpapers-checklist"
+                    element={<PastPapersChecklist />}
+                  />
+                  <Route path="/threads" element={<Threads />} />
+                  <Route path="/threads/:slug" element={<ThreadDetail />} />
+                  <Route path="/community/:slug" element={<Community />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </BrowserRouter>
+            </TooltipProvider>
+          </ThreadAuthProvider>
+        </StyleProvider>
+      </ThemeProviderer>
     </ThemeProvider>
   </QueryClientProvider>
 );

@@ -676,3 +676,139 @@ html body .crisp-client .cc-1brb6 .cc-1kgzy {
   user-select: text;
   cursor: text;
 }
+
+div.cl-internal-1dauvpw {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.cc-1j6x8,
+.cc-zl8x6,
+.cc-1j6x8,
+.cc-1j6x8 {
+  display: none !important;
+  color: white !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.cc-157aw,
+.cc-1kgzy,
+.cc-1qbp0,
+.cc-1o31k {
+  background-color: var(--primary) !important;
+}
+::-moz-selection {
+  /* Code for Firefox */
+  color: var(--thatcolor);
+  background: var(--thatbg);
+}
+
+::selection {
+  color: var(--thatcolor);
+  background: var(--thatbg);
+}
+.cc-1j6x8,
+.cc-zl8x6,
+.cc-1j6x8,
+.cc-1j6x8,
+.cc-1si9v,
+.cc-73utt {
+  display: none !important;
+  color: white !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.cc-157aw,
+.cc-1kgzy,
+.cc-1qbp0,
+.cc-1o31k,
+.cc-1qbp0,
+.cc-1o31k {
+  background-color: hsl(var(--primary)) !important;
+}
+html body .crisp-client .cc-18ov6 .cc-1qbp0,
+.cc-1o31k {
+  background-color: hsl(var(--primary)) !important;
+}
+.dialog-overlay-blur {
+  @apply fixed inset-0 backdrop-blur-sm bg-black/20 dark:bg-black/10;
+}
+@media print {
+  html,
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+[data-hidden="true"] {
+  background-color: #f5f5f5;
+  color: transparent;
+  border-bottom: 1px dotted #ccc;
+  cursor: pointer;
+  user-select: none;
+}
+
+[data-hidden="true"].revealed {
+  color: inherit !important;
+  background-color: transparent !important;
+  user-select: text;
+  cursor: text;
+}
+
+div.cl-internal-1dauvpw {
+  display: none !important;
+  opacity: 0 !important;
+}
+:root .crisp-client .cc-yv368 .cc-1o31k {
+  background-color: hsl(var(--primary)) !important;
+}
+:root .crisp-client .cc-yv368 .cc-fx907,
+.crisp-client .cc-yv368 .cc-1cq3d:hover .cc-17tbg,
+.crisp-client .cc-yv368 .cc-1cq3d .cc-17tbg:active,
+.crisp-client .cc-yv368 .cc-1z0cp,
+.crisp-client .cc-yv368 .cc-pu5t7:hover,
+:root .crisp-client .cc-yv368 .cc-1d59r[data-active="true"] .cc-4f0i0 {
+  background-color: hsl(var(--primary)) !important;
+}
+
+:root .crisp-client .cc-yv368 .cc-1z0cp,
+.crisp-client .cc-yv368 .cc-pu5t7:hover,
+.crisp-client .cc-yv368 .cc-1d59r[data-active="true"] .cc-4f0i0 {
+  background-color: color-mix(
+    in hsl,
+    hsl(var(--primary)) 70%,
+    white
+  ) !important; /* darker */
+}
+:root .crisp-client .cc-yv368 .cc-qc6tk,
+.crisp-client .cc-yv368 .cc-1ke3e:hover {
+  border-color: color-mix(
+    in hsl,
+    hsl(var(--primary)) 70%,
+    white
+  ) !important; /* darker */
+}
+@theme inline {
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
+    var(--delay, 0ms);
+
+  @keyframes cell-ripple {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+}

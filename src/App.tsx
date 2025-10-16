@@ -20,6 +20,8 @@ import Planner from "./pages/Timer";
 import NotesRouter from "./pages/NotesRouter";
 import { ThemeProviderer } from "./hooks/useTheme";
 import CrispChat from "./components/CrispChat";
+import Chat from "./pages/Chat";
+import Whatsapp from "./pages/Whatsapp";
 
 const queryClient = new QueryClient();
 
@@ -52,7 +54,9 @@ const App = () => (
                   <Route
                     path="/pastpapers-checklist"
                     element={<PastPapersChecklist />}
-                  />
+                  />{" "}
+                  <Route path="/whatsapp" element={<Whatsapp />} />{" "}
+                  <Route path="/chat" element={<Chat />} />
                   <Route path="/threads" element={<Threads />} />
                   <Route path="/threads/:slug" element={<ThreadDetail />} />
                   <Route path="/community/:slug" element={<Community />} />

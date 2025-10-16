@@ -11,6 +11,8 @@ import {
 import { ThemeControls } from "@/components/ThemeControls";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { ShootingStars } from "@/components/ui/shooting-stars";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdQuestionAnswer } from "react-icons/md";
 
 const Index = () => {
   return (
@@ -76,6 +78,22 @@ const Index = () => {
             </Button>
           </Link> */}
         </div>
+        <footer className="mt-16 pt-8 border-t border-border">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="outline" className="gap-2" asChild>
+              <Link to="/whatsapp">
+                <FaWhatsapp />
+                Join WhatsApp Community
+              </Link>
+            </Button>
+            <Link to="/chat">
+              <Button variant="outline" className="gap-2 w-full sm:w-auto">
+                <MdQuestionAnswer />
+                Live Chat with me!
+              </Button>
+            </Link>
+          </div>
+        </footer>
       </div>
     </div>
   );

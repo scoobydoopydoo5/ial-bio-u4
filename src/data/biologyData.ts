@@ -3,7 +3,7 @@ import { Topic } from "@/types/checklist";
 export const initialBiologyData: Topic[] = [
   {
     id: "topic-5",
-    title: "Energy Flow, Ecosystems and the Environment",
+    title: "T5 Energy Flow, Ecosystems and the Environment",
     description:
       "Photosynthesis, energy flow, ecosystems, succession, and climate change.",
     collapsed: false,
@@ -17,7 +17,7 @@ export const initialBiologyData: Topic[] = [
         objectives: [
           {
             id: "obj-5-1-1",
-            text: "Understand the overall reaction of photosynthesis and the role of light in splitting water molecules to release oxygen and store hydrogen in glucose",
+            text: "Understand the overall reaction of photosynthesis as requiring energy from light to split apart the strong bonds in water molecules, storing the hydrogen in a fuel (glucose) by combining it with carbon dioxide and releasing oxygen into the atmosphere.",
             completed: false,
             tags: [],
             comments: [],
@@ -25,7 +25,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-1-2",
-            text: "Understand photophosphorylation of ADP and the role of ATP hydrolysis in providing immediate energy for biological processes",
+            text: "Understand how photophosphorylation of ADP requires energy and that hydrolysis of ATP provides an immediate supply of energy for biological processes.",
             completed: false,
             tags: [],
             comments: [],
@@ -33,7 +33,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-1-3",
-            text: "Understand light-dependent reactions: excitation of electrons in chlorophyll, cyclic and non-cyclic photophosphorylation, NADP reduction, ATP production, and oxygen evolution through photolysis",
+            text: "Understand the light-dependent reactions of photosynthesis, including how light energy is trapped by exciting electrons in chlorophyll and the role of these electrons in generating ATP, reducing NADP in cyclic and non-cyclic photophosphorylation, and producing oxygen through photolysis of water.",
             completed: false,
             tags: [],
             comments: [],
@@ -41,7 +41,15 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-1-4",
-            text: "Understand light-independent reactions (Calvin cycle) including carbon fixation, role of GP, GALP, RuBP, and RUBISCO, and production of simple sugars for respiration and biosynthesis",
+            text: "(i) Understand the light-independent reactions as reduction of carbon dioxide using the products of the light-dependent reactions (carbon fixation in the Calvin cycle, the role of GP, GALP, RuBP, and RUBISCO).",
+            completed: false,
+            tags: [],
+            comments: [],
+            hidden: false,
+          },
+          {
+            id: "obj-5-1-4-2",
+            text: "(ii) Know that the products are simple sugars that are used by plants, animals, and other organisms in respiration and the synthesis of new biological molecules (polysaccharides, amino acids, proteins, lipids, and nucleic acids).",
             completed: false,
             tags: [],
             comments: [],
@@ -49,7 +57,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-1-5",
-            text: "Understand chloroplast structure in relation to photosynthesis",
+            text: "Understand the structure of chloroplasts in relation to their role in photosynthesis.",
             completed: false,
             tags: [],
             comments: [],
@@ -57,7 +65,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-1-6",
-            text: "Understand absorption and action spectra",
+            text: "Understand what is meant by the terms absorption spectrum and action spectrum.",
             completed: false,
             tags: [],
             comments: [],
@@ -65,7 +73,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-1-7",
-            text: "Understand separation of chloroplast pigments using chromatography and identification using Rf values",
+            text: "Understand that chloroplast pigments can be separated using chromatography and the pigments identified using Rf values.",
             completed: false,
             tags: [],
             comments: [],
@@ -73,10 +81,10 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-1-8",
-            text: "CORE PRACTICAL 10: Investigate effects of light intensity, wavelength, temperature, and CO₂ availability on photosynthesis",
+            text: "Core Practical 1 (10): Investigate the effects of light intensity, light wavelength, temperature, and availability of carbon dioxide on the rate of photosynthesis using a suitable aquatic plant.",
             completed: false,
             tags: [
-              { id: "tag-practical", label: "core practical", color: "green" },
+              { id: "tag-practical", label: "Core Practical", color: "green" },
             ],
             comments: [],
             hidden: false,
@@ -91,7 +99,15 @@ export const initialBiologyData: Topic[] = [
         objectives: [
           {
             id: "obj-5-2-1",
-            text: "Understand relationship between GPP, NPP, and plant respiration (R) and calculate NPP",
+            text: "(i) Understand the relationship between gross primary productivity (GPP), net primary productivity (NPP), and plant respiration (R).",
+            completed: false,
+            tags: [],
+            comments: [],
+            hidden: false,
+          },
+          {
+            id: "obj-5-2-1",
+            text: "(ii) Be able to calculate net primary productivity.",
             completed: false,
             tags: [],
             comments: [],
@@ -99,7 +115,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-2-2",
-            text: "Calculate efficiency of biomass and energy transfers between trophic levels",
+            text: "Know how to calculate the efficiency of biomass and energy transfers between trophic levels.",
             completed: false,
             tags: [],
             comments: [],
@@ -115,7 +131,7 @@ export const initialBiologyData: Topic[] = [
         objectives: [
           {
             id: "obj-5-3-1",
-            text: "Define population, community, habitat and ecosystem",
+            text: "Understand what is meant by the terms population, community, habitat, and ecosystem.",
             completed: false,
             tags: [],
             comments: [],
@@ -123,7 +139,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-3-2",
-            text: "Understand biotic and abiotic factors controlling organism distribution and abundance",
+            text: "Understand that the numbers and distribution of organisms in a habitat are controlled by biotic and abiotic factors.",
             completed: false,
             tags: [],
             comments: [],
@@ -131,7 +147,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-3-3",
-            text: "Understand ecological niche and its role in organism distribution",
+            text: "Understand how the concept of niche accounts for the distribution and abundance of organisms in a habitat.",
             completed: false,
             tags: [],
             comments: [],
@@ -139,17 +155,17 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-3-4",
-            text: "CORE PRACTICAL 11: Study ecology of a habitat using quadrats and transects; measure abiotic factors",
+            text: "Core Practical 2 (11): Carry out a study of the ecology of a habitat, such as using quadrats and transects to determine the distribution and abundance of organisms, and measuring abiotic factors appropriate to the habitat.",
             completed: false,
             tags: [
-              { id: "tag-practical", label: "core-practical", color: "green" },
+              { id: "tag-practical", label: "Core Practical", color: "green" },
             ],
             comments: [],
             hidden: false,
           },
           {
             id: "obj-5-3-5",
-            text: "Understand stages of succession from colonization to climax community",
+            text: "Understand the stages of succession from colonization to the formation of a climax community.",
             completed: false,
             tags: [],
             comments: [],
@@ -165,7 +181,7 @@ export const initialBiologyData: Topic[] = [
         objectives: [
           {
             id: "obj-5-4-1",
-            text: "Understand different types of evidence for climate change and their causes",
+            text: "Understand the different types of evidence for climate change and its causes, including records of carbon dioxide levels, temperature records, pollen in peat bogs, and dendrochronology, recognizing correlations and causal relationships.",
             completed: false,
             tags: [],
             comments: [],
@@ -173,7 +189,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-4-2",
-            text: "Understand causes of anthropogenic climate change and greenhouse gases",
+            text: "Understand the causes of anthropogenic climate change, including the role of greenhouse gases in the greenhouse effect.",
             completed: false,
             tags: [],
             comments: [],
@@ -181,7 +197,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-4-3",
-            text: "Apply knowledge of the carbon cycle to reduce atmospheric CO₂",
+            text: "Understand how knowledge of the carbon cycle can be applied to methods to reduce atmospheric levels of carbon dioxide.",
             completed: false,
             tags: [],
             comments: [],
@@ -189,7 +205,15 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-4-4",
-            text: "Understand data extrapolation and modeling for climate change and their limitations",
+            text: "(i) Understand that data can be extrapolated to make predictions and that these are used in models of future climate change.",
+            completed: false,
+            tags: [],
+            comments: [],
+            hidden: false,
+          },
+          {
+            id: "obj-5-4-4-2",
+            text: "(ii) Understand that models for climate change have limitations.",
             completed: false,
             tags: [],
             comments: [],
@@ -197,7 +221,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-4-5",
-            text: "Understand effects of climate change on plants and animals (distribution, development, lifecycle changes)",
+            text: "Understand the effects of climate change (changing rainfall patterns and changes in seasonal cycles) on plants and animals (distribution of species, development, and life cycles).",
             completed: false,
             tags: [],
             comments: [],
@@ -205,7 +229,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-4-6",
-            text: "Investigate effects of temperature on enzyme activity and organism development (Q10)",
+            text: "Understand the effect of temperature on the rate of enzyme activity and its impact on plants, animals, and microorganisms, to include Q10.",
             completed: false,
             tags: [],
             comments: [],
@@ -213,10 +237,10 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-4-7",
-            text: "CORE PRACTICAL 12: Investigate temperature effects on organism development ethically",
+            text: "Core Practical 3 (12): Investigate the effects of temperature on the development of organisms (such as seedling growth rate or brine shrimp hatch rates), taking into account the ethical use of organisms.",
             completed: false,
             tags: [
-              { id: "tag-practical", label: "core-practical", color: "green" },
+              { id: "tag-practical", label: "Core Practical", color: "green" },
             ],
             comments: [],
             hidden: false,
@@ -231,7 +255,7 @@ export const initialBiologyData: Topic[] = [
         objectives: [
           {
             id: "obj-5-5-1",
-            text: "Understand evolution as change in allele frequency via mutation and natural selection",
+            text: "Understand how evolution (a change in allele frequency) can come about through gene mutation and natural selection.",
             completed: false,
             tags: [],
             comments: [],
@@ -239,7 +263,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-5-2",
-            text: "Understand how isolation reduces gene flow leading to allopatric or sympatric speciation",
+            text: "Understand how isolation reduces gene flow between populations, leading to allopatric or sympatric speciation.",
             completed: false,
             tags: [],
             comments: [],
@@ -247,7 +271,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-5-3",
-            text: "Understand how scientific conclusions on controversial issues can vary depending on sources",
+            text: "Understand the way in which scientific conclusions about controversial issues, such as what actions should be taken to reduce climate change, or the degree to which humans are affecting climate change, can sometimes depend on who is reaching the conclusions.",
             completed: false,
             tags: [],
             comments: [],
@@ -255,7 +279,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-5-5-4",
-            text: "Understand reforestation and sustainable resource use, including biofuels, in managing human-conservation conflicts",
+            text: "Understand how reforestation and the use of sustainable resources, including biofuels, are examples of the effective management of the conflict between human needs and conservation.",
             completed: false,
             tags: [],
             comments: [],
@@ -267,21 +291,20 @@ export const initialBiologyData: Topic[] = [
   },
   {
     id: "topic-6",
-    title: "Microbiology, Immunity and Forensics",
-    description:
-      "Culturing microorganisms, immune responses, PCR, DNA profiling, and forensic applications.",
+    title: "T6 Microbiology, Immunity and Forensics",
+    description: "Microorganisms, immune response, and forensics.",
     collapsed: false,
     hidden: false,
     lessons: [
       {
         id: "lesson-6-1",
-        title: "Microbiology Principles and Techniques",
+        title: "Microbial Growth and Techniques",
         collapsed: false,
         hidden: false,
         objectives: [
           {
             id: "obj-6-1-1",
-            text: "Understand principles and techniques for culturing microorganisms using aseptic technique",
+            text: "Understand the principles and techniques involved in culturing microorganisms, using aseptic technique.",
             completed: false,
             tags: [],
             comments: [],
@@ -289,7 +312,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-1-2",
-            text: "Understand methods for measuring microbial growth (cell counts, dilution plating, mass, optical/turbidity methods)",
+            text: "Understand the different methods of measuring the growth of microorganisms, as illustrated by cell counts, dilution plating, mass, and optical methods (turbidity).",
             completed: false,
             tags: [],
             comments: [],
@@ -297,7 +320,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-1-3",
-            text: "Understand phases of bacterial growth curve (lag, exponential, stationary, death) and calculate exponential growth rate constants",
+            text: "Understand the different phases of a bacterial growth curve (lag phase, exponential phase, stationary phase, and death phase) and be able to calculate exponential growth rate constants.",
             completed: false,
             tags: [],
             comments: [],
@@ -305,10 +328,10 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-1-4",
-            text: "CORE PRACTICAL 13: Investigate rate of microbial growth in liquid culture safely and ethically",
+            text: "Core Practical 4 (13): Investigate the rate of growth of microorganisms in a liquid culture, taking into account the safe and ethical use of organisms.",
             completed: false,
             tags: [
-              { id: "tag-practical", label: "core-practical", color: "green" },
+              { id: "tag-practical", label: "Core Practical", color: "green" },
             ],
             comments: [],
             hidden: false,
@@ -317,13 +340,21 @@ export const initialBiologyData: Topic[] = [
       },
       {
         id: "lesson-6-2",
-        title: "Microorganisms and Infection",
+        title: "Infection and Immune Response",
         collapsed: false,
         hidden: false,
         objectives: [
           {
             id: "obj-6-2-1",
-            text: "Compare structure of bacteria and viruses (nucleic acid, capsid, envelope) using examples: Ebola, TMV, HIV, λ phage",
+            text: "(i) Be able to compare the structure of bacteria and viruses (nucleic acid, capsid structure, and envelope) with reference to Ebola virus, tobacco mosaic virus (TMV), human immunodeficiency virus (HIV), and lambda phage (λ phage).",
+            completed: false,
+            tags: [],
+            comments: [],
+            hidden: false,
+          },
+          {
+            id: "obj-6-2-1-2",
+            text: "(ii) Understand what is meant by the terms lytic and latency.",
             completed: false,
             tags: [],
             comments: [],
@@ -331,7 +362,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-2-2",
-            text: "Understand lytic and latency cycles",
+            text: "Understand how Mycobacterium tuberculosis and human immunodeficiency virus (HIV) infect human cells, causing symptoms that may result in death.",
             completed: false,
             tags: [],
             comments: [],
@@ -339,15 +370,15 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-2-3",
-            text: "Understand infection by Mycobacterium tuberculosis and HIV, causing symptoms and potential death",
+            text: "(i) Know the major routes pathogens may take when entering the body.",
             completed: false,
             tags: [],
             comments: [],
             hidden: false,
           },
           {
-            id: "obj-6-2-4",
-            text: "Know major pathogen entry routes and barriers protecting the body (skin, stomach acid, gut and skin flora)",
+            id: "obj-6-2-3",
+            text: "(ii) Understand the role of barriers in protecting the body from infection, including skin, stomach acid, and gut and skin flora.",
             completed: false,
             tags: [],
             comments: [],
@@ -357,13 +388,13 @@ export const initialBiologyData: Topic[] = [
       },
       {
         id: "lesson-6-3",
-        title: "Immune Response",
+        title: "Immune System and Pathogens",
         collapsed: false,
         hidden: false,
         objectives: [
           {
             id: "obj-6-3-1",
-            text: "Understand non-specific immune responses: inflammation, lysozyme, interferon, phagocytosis",
+            text: "Understand the non-specific responses of the body to infection, including inflammation, lysozyme action, interferon, and phagocytosis.",
             completed: false,
             tags: [],
             comments: [],
@@ -371,7 +402,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-3-2",
-            text: "Understand roles of antigens and antibodies in immune response (plasma cells, macrophages, APCs)",
+            text: "Understand the roles of antigens and antibodies in the body’s immune response including the involvement of plasma cells, macrophages, and antigen-presenting cells.",
             completed: false,
             tags: [],
             comments: [],
@@ -379,7 +410,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-3-3",
-            text: "Understand differences between B cells (memory, effector) and T cells (helper, killer, memory) in immune response",
+            text: "Understand the differences between the roles of B cells (B memory and B effector cells), and T cells (T helper, T killer, and T memory cells) in the host’s immune response.",
             completed: false,
             tags: [],
             comments: [],
@@ -387,41 +418,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-3-4",
-            text: "Understand development of immunity (natural, artificial, active, passive)",
-            completed: false,
-            tags: [],
-            comments: [],
-            hidden: false,
-          },
-          {
-            id: "obj-6-3-5",
-            text: "Understand evolutionary race between pathogens and hosts via evasion mechanisms",
-            completed: false,
-            tags: [],
-            comments: [],
-            hidden: false,
-          },
-          {
-            id: "obj-6-3-6",
-            text: "Understand difference between bacteriostatic and bactericidal antibiotics",
-            completed: false,
-            tags: [],
-            comments: [],
-            hidden: false,
-          },
-          {
-            id: "obj-6-3-7",
-            text: "CORE PRACTICAL 14: Investigate effects of different antibiotics on bacteria",
-            completed: false,
-            tags: [
-              { id: "tag-practical", label: "core-practical", color: "green" },
-            ],
-            comments: [],
-            hidden: false,
-          },
-          {
-            id: "obj-6-3-8",
-            text: "Understand how hospital-acquired infection control and antibiotic prescription codes reduce infection",
+            text: "Understand how individuals may develop immunity (natural, artificial, active, and passive).",
             completed: false,
             tags: [],
             comments: [],
@@ -431,13 +428,13 @@ export const initialBiologyData: Topic[] = [
       },
       {
         id: "lesson-6-4",
-        title: "Microorganisms in Decomposition and DNA Techniques",
+        title: "Antibiotics, Microbial Resistance, and Forensics",
         collapsed: false,
         hidden: false,
         objectives: [
           {
             id: "obj-6-4-1",
-            text: "Understand role of microorganisms in decomposition and carbon recycling",
+            text: "Understand how the theory of an ‘evolutionary race’ between pathogens and their hosts is supported by evasion mechanisms shown by pathogens.",
             completed: false,
             tags: [],
             comments: [],
@@ -445,7 +442,7 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-4-2",
-            text: "Understand DNA amplification using PCR",
+            text: "Understand the difference between bacteriostatic and bactericidal antibiotics.",
             completed: false,
             tags: [],
             comments: [],
@@ -453,25 +450,11 @@ export const initialBiologyData: Topic[] = [
           },
           {
             id: "obj-6-4-3",
-            text: "Understand DNA separation using gel electrophoresis",
+            text: "Core Practical 5 (14): Investigate the effect of different antibiotics on bacteria.",
             completed: false,
-            tags: [],
-            comments: [],
-            hidden: false,
-          },
-          {
-            id: "obj-6-4-4",
-            text: "Understand DNA profiling for identification and determining genetic relationships in plants and animals",
-            completed: false,
-            tags: [],
-            comments: [],
-            hidden: false,
-          },
-          {
-            id: "obj-6-4-5",
-            text: "Understand methods to determine time of death: decomposition, succession, forensic entomology, body temperature, muscle contraction",
-            completed: false,
-            tags: [],
+            tags: [
+              { id: "tag-practical", label: "Core Practical", color: "green" },
+            ],
             comments: [],
             hidden: false,
           },

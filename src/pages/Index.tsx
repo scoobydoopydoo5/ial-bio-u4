@@ -25,7 +25,7 @@ const Index = () => {
           <CheckSquare className="w-12 h-12 text-primary" />
         </div>
         <h1 className="text-5xl sm:text-6xl font-bold text-foreground mb-6 bg-clip-text">
-          Ace U4 Bio
+          Ace IAL Bio <span className="text-primary">U4</span>
         </h1>
         <p className="text-xl sm:text-2xl text-muted-foreground mb-10 leading-relaxed">
           Master Edexcel Unit 4 IAL Biology with interactive checklists, past

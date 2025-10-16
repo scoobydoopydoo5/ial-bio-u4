@@ -19,6 +19,7 @@ import NoOldSyllabus from "./pages/NoOldSyllabus";
 import Planner from "./pages/Timer";
 import NotesRouter from "./pages/NotesRouter";
 import { ThemeProviderer } from "./hooks/useTheme";
+import CrispChat from "./components/CrispChat";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,8 @@ const App = () => (
             <TooltipProvider>
               <Toaster />
               <Sonner />
+              <CrispChat />
+
               <BrowserRouter>
                 <Routes>
                   <Route path="/notes/*" element={<NotesRouter />} />

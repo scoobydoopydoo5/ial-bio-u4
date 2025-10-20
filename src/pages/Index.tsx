@@ -39,7 +39,7 @@ const Index = () => {
               variant="outline"
               className="gap-2 text-lg px-8 py-6 w-full sm:w-auto"
             >
-              <Timer className="w-5 h-5" />
+              <Timer className="w-5 h-5 text-red-600 dark:text-red-400" />
               Countdown
             </Button>
           </Link>{" "}
@@ -49,7 +49,7 @@ const Index = () => {
               className="gap-2 text-lg px-8 py-6 w-full sm:w-auto"
             >
               Syllabus Checklist
-              <CheckSquare className="w-5 h-5" />
+              <CheckSquare className="w-5 h-5 text-green-600 dark:text-green-400" />
             </Button>
           </Link>
           <Link to="/pastpapers-checklist">
@@ -57,7 +57,7 @@ const Index = () => {
               variant="outline"
               className="gap-2 text-lg px-8 py-6 w-full sm:w-auto"
             >
-              <FileText className="w-5 h-5" />
+              <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               Past Papers
             </Button>
           </Link>{" "}
@@ -66,7 +66,7 @@ const Index = () => {
               variant="outline"
               className="gap-2 text-lg px-8 py-6 w-full sm:w-auto"
             >
-              <Notebook className="w-5 h-5" />
+              <Notebook className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
               Notes
             </Button>
           </Link>{" "}

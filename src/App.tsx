@@ -22,6 +22,8 @@ import { ThemeProviderer } from "./hooks/useTheme";
 import CrispChat from "./components/CrispChat";
 import Chat from "./pages/Chat";
 import Whatsapp from "./pages/Whatsapp";
+import KeywordsLibrary from "./pages/KeywordsLibrary";
+import Flashcards from "./pages/Flashcards";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +57,11 @@ const App = () => (
                     path="/pastpapers-checklist"
                     element={<PastPapersChecklist />}
                   />{" "}
+                  <Route
+                    path="/keywords-library"
+                    element={<KeywordsLibrary />}
+                  />{" "}
+                  <Route path="/flashcards" element={<Flashcards />} />
                   <Route path="/whatsapp" element={<Whatsapp />} />{" "}
                   <Route path="/chat" element={<Chat />} />
                   <Route path="/threads" element={<Threads />} />

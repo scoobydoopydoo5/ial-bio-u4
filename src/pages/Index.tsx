@@ -58,7 +58,7 @@ const Index = () => {
               className="gap-2 text-lg px-8 py-6 w-full sm:w-auto"
             >
               <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              Past Papers
+              Past Papers+
             </Button>
           </Link>{" "}
           <Link to="/notes">
@@ -67,7 +67,7 @@ const Index = () => {
               className="gap-2 text-lg px-8 py-6 w-full sm:w-auto"
             >
               <Notebook className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
-              Notes
+              Notes+
             </Button>
           </Link>{" "}
           {/* 

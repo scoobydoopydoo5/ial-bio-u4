@@ -7,7 +7,11 @@ import {
   Bookmark,
   Plus,
   Heart,
+  SquareStack,
+  FileStack,
 } from "lucide-react";
+import { VscSymbolKeyword } from "react-icons/vsc";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -30,6 +34,8 @@ import { SubjectCard } from "./notes/_components/SubjectCard";
 import { Subject } from "@/types";
 import { mockSubjects, mockChapters } from "@/data/mockData";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { FaInfo } from "react-icons/fa";
+import { GiStack } from "react-icons/gi";
 
 interface SubjectsPageProps {
   onSubjectSelect: (subject: Subject) => void;
@@ -288,8 +294,31 @@ export function SubjectsPage({
               onClick={() => onSubjectSelect(subject)}
             />
           ))}
-
           {/* Submit Notes Card - Always visible at the end */}
+          <Card className="card-hover cursor-pointer group h-full transition-all duration-300 border-dashed border-2 hover:border-primary">
+            <CardContent className="flex flex-col items-center justify-center h-full p-6 min-h-[200px] space-y-4">
+              <button
+                onClick={() => (window.location.href = "/keywords-library")}
+                className="w-full py-2 px-4 bg-primary/10 hover:bg-primary/20  font-medium rounded-md transition-colors duration-300"
+              >
+                Definitions
+              </button>{" "}
+              <button
+                onClick={() => (window.location.href = "/flashcards")}
+                className="w-full py-2 px-4 bg-primary/10 hover:bg-primary/20  font-medium rounded-md transition-colors duration-300"
+              >
+                Flashcards+
+              </button>
+              <button
+                onClick={() => (window.location.href = "/equations")}
+                className="w-full py-2 px-4 bg-primary/5 text-muted-foreground hover:bg-primary/20 pointer-events-none  font-medium rounded-md transition-colors duration-300"
+                disabled
+              >
+                Equations
+              </button>
+            </CardContent>
+          </Card>
+
           <Card
             className="card-hover cursor-pointer group h-full transition-all duration-300 border-dashed border-2 hover:border-primary"
             onClick={onSubmitNotesClick}

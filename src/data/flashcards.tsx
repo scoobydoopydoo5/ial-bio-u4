@@ -248,10 +248,10 @@ export const defaultFlashcards: Flashcard[] = [
     lesson: "Tricky",
   },
   {
-    id: "41",
-    front: "What would make PCR calculations not accurate?",
-    back: "Re-annealing, reagent limiting, inhibitory by-products",
-    lesson: "Tricky",
+    id: "42",
+    front: "Speciation",
+    back: "Allopatric (Area) or Sympatric (Same), isolation then different mutations, diff selection pressures, diff adv alleles diff changes in allele freq, reproductive isolation",
+    lesson: "Repeated",
   },
   {
     id: "39",

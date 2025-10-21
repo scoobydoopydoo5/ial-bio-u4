@@ -74,16 +74,16 @@ export default function Flashcards() {
   });
 
   useEffect(() => {
-    // const stored = localStorage.getItem("flashcards-data");
+    const stored = localStorage.getItem("flashcards-data");
     const storedSettings = localStorage.getItem("flashcard-settings");
 
-    setFlashcards(defaultFlashcards);
+    // setFlashcards(defaultFlashcards);
 
-    // if (stored) {
-    //   setFlashcards(JSON.parse(stored));
-    // } else {
-    //   setFlashcards(defaultFlashcards);
-    // }
+    if (stored) {
+      setFlashcards(JSON.parse(stored));
+    } else {
+      setFlashcards(defaultFlashcards);
+    }
 
     if (storedSettings) {
       setSettings(JSON.parse(storedSettings));
@@ -310,7 +310,7 @@ export default function Flashcards() {
               <SelectValue placeholder="Filter by lesson" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Lessons</SelectItem>
+              <SelectItem value="all">All tags</SelectItem>
               {lessons.map((lesson) => (
                 <SelectItem key={lesson} value={lesson}>
                   {lesson}
@@ -402,15 +402,15 @@ export default function Flashcards() {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-2 block">Lesson</label>
+                <label className="text-sm font-medium mb-2 block">Tag</label>
                 <Select
                   value={newFlashcard.lesson}
                   onValueChange={(value) =>
-                    setNewFlashcard((prev) => ({ ...prev, lesson: value }))
+                    setNewFlashcard((prev) => ({ ...prev, tag: value }))
                   }
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select lesson" />
+                    <SelectValue placeholder="Select tag" />
                   </SelectTrigger>
                   <SelectContent>
                     {lessons.map((lesson) => (

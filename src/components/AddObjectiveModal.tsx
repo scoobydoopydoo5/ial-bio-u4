@@ -4,14 +4,24 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Topic } from "@/types/checklist";
 
 interface AddObjectiveModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   topics: Topic[];
-  onAddObjective: (topicId: string, lessonId: string, objectiveText: string) => void;
+  onAddObjective: (
+    topicId: string,
+    lessonId: string,
+    objectiveText: string
+  ) => void;
   onAddTopic: (topicTitle: string, topicDescription: string) => void;
 }
 
@@ -97,7 +107,10 @@ export const AddObjectiveModal = ({
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label>Select Topic</Label>
-                <Select value={selectedTopicId} onValueChange={setSelectedTopicId}>
+                <Select
+                  value={selectedTopicId}
+                  onValueChange={setSelectedTopicId}
+                >
                   <SelectTrigger className="bg-background border-border">
                     <SelectValue placeholder="Choose a topic..." />
                   </SelectTrigger>
@@ -114,7 +127,10 @@ export const AddObjectiveModal = ({
               {selectedTopic && (
                 <div className="space-y-2">
                   <Label>Select Lesson</Label>
-                  <Select value={selectedLessonId} onValueChange={setSelectedLessonId}>
+                  <Select
+                    value={selectedLessonId}
+                    onValueChange={setSelectedLessonId}
+                  >
                     <SelectTrigger className="bg-background border-border">
                       <SelectValue placeholder="Choose a lesson..." />
                     </SelectTrigger>
@@ -164,10 +180,17 @@ export const AddObjectiveModal = ({
           )}
 
           <div className="flex justify-end gap-2 pt-2">
-            <Button variant="outline" onClick={() => onOpenChange(false)} className="border-border">
+            <Button
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+              className="border-border"
+            >
               Cancel
             </Button>
-            <Button onClick={handleSave} className="bg-primary hover:bg-primary/90 gap-2">
+            <Button
+              onClick={handleSave}
+              className="bg-primary hover:bg-primary/90 gap-2"
+            >
               <Plus className="h-4 w-4" />
               {mode === "existing" ? "Add Objective" : "Create Topic"}
             </Button>

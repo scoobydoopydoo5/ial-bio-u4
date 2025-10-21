@@ -314,4 +314,104 @@ export const pp_data: PastPaperData[] = [
     mark_scheme_url:
       "https://drive.google.com/file/d/111W1WOEVTNrlwi6JPA-HEuPcC72h8A7A/view?usp=sharing",
   },
+  {
+    id: "as-topics",
+    type: "other",
+    title: "AS required info",
+    question_paper_url: "/as-topics.pdf",
+    mark_scheme_url: "/as-topics.pdf",
+  },
+  {
+    id: "model-qs",
+    type: "other",
+    title: "Model QA",
+    question_paper_url: "/model-qs.pdf",
+    mark_scheme_url: "/model-qs.pdf",
+  },
+  {
+    id: "U4-Calculations",
+    type: "other",
+    title: "U4 Calculations",
+    question_paper_url: "/calc.pdf",
+    mark_scheme_url: "/calc.pdf",
+  },
+  {
+    id: "more-notes",
+    type: "other",
+    title: "Great Notes",
+    question_paper_url:
+      "https://drive.google.com/drive/folders/1GLtIdP3ypdKOd_w9SIcHU0eO45NGhlZp",
+    mark_scheme_url:
+      "https://drive.google.com/drive/folders/1GLtIdP3ypdKOd_w9SIcHU0eO45NGhlZp",
+  },
+  {
+    id: "spec-notes",
+    type: "other",
+    title: "Spec Notes",
+    question_paper_url: "/specnotes.pdf",
+    mark_scheme_url: "/specnotes.pdf",
+  },
+  {
+    id: "MS-notes",
+    type: "other",
+    title: "MS Notes",
+    question_paper_url:
+      "https://drive.google.com/drive/folders/10ELOWr-breaYB-1t_R_R_lGlPjvOka2B",
+    mark_scheme_url:
+      "https://drive.google.com/drive/folders/10ELOWr-breaYB-1t_R_R_lGlPjvOka2B",
+  },
+  {
+    id: "40-imgs",
+    type: "other",
+    title: "Forty images Summary",
+    question_paper_url:
+      "https://drive.google.com/drive/folders/1kKnnp2TNVcw3noJqvRSLcm4gfbDfehdd",
+    mark_scheme_url:
+      "https://drive.google.com/drive/folders/1kKnnp2TNVcw3noJqvRSLcm4gfbDfehdd",
+  },
+  {
+    id: "cps",
+    type: "other",
+    title: "All Practicals",
+    question_paper_url:
+      "https://drive.google.com/file/d/1P8Nv-6dprvUIjUsoSOaoLbRgdnItK6oR/view?usp=sharing",
+    mark_scheme_url:
+      "https://drive.google.com/file/d/1P8Nv-6dprvUIjUsoSOaoLbRgdnItK6oR/view?usp=sharing",
+  },
+  {
+    id: "t6",
+    type: "other",
+    title: "All T6",
+    question_paper_url:
+      "https://drive.google.com/file/d/1s9W-s2iU_urNUjSN7pDEO5rKFzsSdZ2F/view?usp=sharing",
+    mark_scheme_url:
+      "https://drive.google.com/file/d/1s9W-s2iU_urNUjSN7pDEO5rKFzsSdZ2F/view?usp=sharing",
+  },
+  {
+    id: "t5",
+    type: "other",
+    title: "All T5",
+    question_paper_url:
+      "https://drive.google.com/file/d/1X4yWISqnj_Ki1Hww_5FzjyjLGKPHgLoh/view?usp=sharing",
+    mark_scheme_url:
+      "https://drive.google.com/file/d/1X4yWISqnj_Ki1Hww_5FzjyjLGKPHgLoh/view?usp=sharing",
+  },
+  {
+    id: "MS00notes",
+    type: "other",
+    title: "MS notes 2",
+    question_paper_url:
+      "https://drive.google.com/file/d/1FmYe-6NKW3aN_xvAkVJdy0mVRSjFPlEV/view?usp=sharing",
+    mark_scheme_url:
+      "https://drive.google.com/file/d/1FmYe-6NKW3aN_xvAkVJdy0mVRSjFPlEV/view?usp=sharing",
+  },
+  {
+    id: "Vaccine-cheatsheet",
+    type: "other",
+    title: "Vaccine Cheatsheet",
+    question_paper_url:
+      "https://drive.google.com/file/d/1FmYe-6NKW3aN_xvAkVJdy0mVRSjFPlEV/view?usp=sharing",
+    mark_scheme_url:
+      "https://drive.google.com/file/d/1FmYe-6NKW3aN_xvAkVJdy0mVRSjFPlEV/view?usp=sharing",
+  },
 ];

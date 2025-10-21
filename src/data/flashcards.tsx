@@ -160,7 +160,7 @@ export const defaultFlashcards: Flashcard[] = [
   {
     id: "26",
     front: "Whats role of Gut/Skin Flora?",
-    back: "Prevent growth of pathogens, by competing for space & nutrients, skin flora release vitamin-K and lactic acid, reducing acidity, and releasing antimicrobials",
+    back: "Prevent growth of pathogens, by competing for space & nutrients, gut flora release vitamin-K, skin flora release lactic acid, reducing acidity, and releasing antimicrobials",
     lesson: "Highly Repeated",
   },
   {

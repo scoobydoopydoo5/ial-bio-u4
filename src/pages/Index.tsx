@@ -7,22 +7,53 @@ import {
   FileText,
   Timer,
   Notebook,
+  Power,
 } from "lucide-react";
 import { ThemeControls } from "@/components/ThemeControls";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { ShootingStars } from "@/components/ui/shooting-stars";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaBook, FaWhatsapp } from "react-icons/fa";
 import { MdQuestionAnswer } from "react-icons/md";
+import { Alert } from "@/components/ui/alert";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="flex min-h-screen flex-col bg-background relative">
       <StarsBackground className="pointer-events-none" />
       <ShootingStars className="pointer-events-none" />
-      <div className="text-center space-y-8 p-8 max-w-3xl">
-        <div className="flex justify-end mb-4">
+      {/* Top Announcement Banner */}
+      <div className="w-full bg-primary/20 text-primary/90 backdrop-blur-md py-3 px-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 rounded-b-lg shadow-sm border-b border-primary/30">
+        {/* Icon & Label */}
+        <div className="flex items-center gap-2">
+          <FaBook className="w-5 h-5 text-primary/80" />
+          <span className="font-medium">Notes for IGCSE:</span>
+        </div>
+
+        {/* Links */}
+        <a
+          href="/BioSME.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold hover:text-primary/100 hover:underline underline hover:opacity-80 transition-colors"
+        >
+          SME Bio
+        </a>
+        <span className="hidden sm:block">|</span>
+        <a
+          href="/ChemSME.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold hover:text-primary/100 hover:underline underline hover:opacity-80 transition-colors"
+        >
+          SME Chem
+        </a>
+      </div>
+
+      <div className="text-center space-y-8 p-8 max-w-3xl mx-auto mt-0">
+        <div className="flex justify-end mb-2">
           <ThemeControls />
         </div>
+
         <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-primary/10 mb-6 animate-pulse">
           <CheckSquare className="w-12 h-12 text-primary" />
         </div>
@@ -95,6 +126,15 @@ const Index = () => {
           </div>
         </footer>
       </div>
+      {/* <div className="fixed bottom-0 left-0 w-full bg-primary/90 text-white py-4 px-6 flex flex-col sm:flex-row items-center justify-center gap-6 shadow-lg z-50">
+        <Link to="/sme-chem" className="font-semibold hover:underline">
+          SME Chem
+        </Link>
+        <span className="hidden sm:block">|</span>
+        <Link to="/sme-bio" className="font-semibold hover:underline">
+          SME Bio
+        </Link>
+      </div> */}
     </div>
   );
 };

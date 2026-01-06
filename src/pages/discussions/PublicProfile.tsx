@@ -105,7 +105,6 @@ const PublicProfile = () => {
     let canView = isOwn || isPublicProfile;
 
     if (!canView && user) {
-      // Check if following
       const { data: followData } = await supabase
         .from("follows")
         .select("status")
@@ -126,21 +125,17 @@ const PublicProfile = () => {
         .select("*")
         .eq("user_id", profileData.user_id);
 
-      if (subjectsData) {
-        setSubjects(subjectsData);
-      }
+      if (subjectsData) setSubjects(subjectsData);
 
       const { data: universitiesData } = await supabase
         .from("user_universities")
         .select("*")
         .eq("user_id", profileData.user_id);
 
-      if (universitiesData) {
-        setUniversities(universitiesData);
-      }
+      if (universitiesData) setUniversities(universitiesData);
     }
 
-    // Get quiz questions solved from localStorage (this is stored locally)
+    // Get quizzes solved from localStorage
     const solvedKey = "quiz_solved_questions";
     try {
       const stored = localStorage.getItem(solvedKey);
@@ -177,9 +172,9 @@ const PublicProfile = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-screen flex flex-col items-center justify-center px-4">
         <KawaiiMascot character="ghost" mood="shocked" size={100} />
-        <p className="mt-4 text-muted-foreground animate-pulse">
+        <p className="mt-4 text-muted-foreground animate-pulse text-center">
           Loading profile...
         </p>
       </div>
@@ -188,7 +183,7 @@ const PublicProfile = () => {
 
   if (!profile) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center">
         <KawaiiMascot character="cat" mood="sad" size={120} />
         <h1 className="text-2xl font-bold mt-4">User Not Found</h1>
         <p className="text-muted-foreground mt-2">@{username} doesn't exist</p>
@@ -201,10 +196,10 @@ const PublicProfile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background px-4 sm:px-6 lg:px-8 py-6">
       {/* Header */}
-      <div className="border-b bg-background/95 backdrop-blur">
-        <div className="container py-4">
+      <div className="border-b bg-background/95 backdrop-blur mb-6">
+        <div className="container flex items-center py-4">
           <Button variant="ghost" size="sm" onClick={() => navigate(-1)}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
@@ -212,7 +207,7 @@ const PublicProfile = () => {
         </div>
       </div>
 
-      <div className="container py-8 max-w-2xl">
+      <div className="container max-w-3xl mx-auto flex flex-col gap-6">
         {/* Profile Card */}
         <Card>
           <CardContent className="pt-6">
@@ -228,28 +223,28 @@ const PublicProfile = () => {
               />
 
               <div className="flex-1 text-center sm:text-left">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                  <h1 className="text-2xl font-bold">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 flex-wrap justify-center sm:justify-start">
+                  <h1 className="text-2xl font-bold break-words">
                     {profile.display_name || profile.username}
                   </h1>
                   {!profile.is_public && (
-                    <span className="inline-flex items-center gap-1 text-xs bg-muted px-2 py-1 rounded-full">
+                    <span className="inline-flex items-center gap-1 text-xs bg-muted px-2 py-1 rounded-full flex-shrink-0">
                       <Lock className="h-3 w-3" />
                       Private
                     </span>
                   )}
                 </div>
-                <p className="text-muted-foreground flex items-center gap-1">
+                <p className="text-muted-foreground flex items-center gap-1 justify-center sm:justify-start flex-wrap mt-1">
                   <UserBadges username={profile.username} size={14} />@
                   {profile.username}
                 </p>
 
                 {canViewProfile && profile.bio && (
-                  <p className="mt-2 text-sm">{profile.bio}</p>
+                  <p className="mt-2 text-sm break-words">{profile.bio}</p>
                 )}
 
                 {/* Stats */}
-                <div className="flex justify-center sm:justify-start gap-6 mt-4">
+                <div className="flex flex-wrap justify-center sm:justify-start gap-6 mt-4">
                   <button
                     className="text-center hover:text-primary transition-colors"
                     onClick={() => handleFollowListOpen("followers")}
@@ -308,7 +303,10 @@ const PublicProfile = () => {
                 {/* Actions */}
                 <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-4">
                   {isOwnProfile ? (
-                    <Button onClick={() => navigate("/discussions/settings")}>
+                    <Button
+                      className="flex-1 sm:flex-none"
+                      onClick={() => navigate("/discussions/settings")}
+                    >
                       <Settings className="mr-2 h-4 w-4" />
                       Edit Profile
                     </Button>
@@ -351,7 +349,7 @@ const PublicProfile = () => {
           </Card>
         )}
 
-        {/* Bio Card */}
+        {/* Bio, Subjects, Universities */}
         {canViewProfile && profile.bio && (
           <Card className="mt-6">
             <CardContent className="pt-6">
@@ -359,12 +357,13 @@ const PublicProfile = () => {
                 <Users className="h-4 w-4" />
                 About
               </h3>
-              <p className="text-sm text-muted-foreground">{profile.bio}</p>
+              <p className="text-sm text-muted-foreground break-words">
+                {profile.bio}
+              </p>
             </CardContent>
           </Card>
         )}
 
-        {/* Subjects */}
         {canViewProfile && subjects.length > 0 && (
           <Card className="mt-6">
             <CardContent className="pt-6">
@@ -377,7 +376,6 @@ const PublicProfile = () => {
           </Card>
         )}
 
-        {/* Universities */}
         {canViewProfile && universities.length > 0 && (
           <Card className="mt-6">
             <CardContent className="pt-6">
@@ -390,14 +388,16 @@ const PublicProfile = () => {
                   <Badge
                     key={uni.id}
                     variant="secondary"
-                    className="flex items-center gap-2 py-1.5 px-3"
+                    className="flex items-center gap-2 py-1.5 px-3 flex-shrink-0"
                   >
                     <span
                       className={`fi fi-${uni.alpha_two_code.toLowerCase()}`}
                     />
-                    <span>{uni.university_name}</span>
+                    <span className="truncate max-w-[120px]">
+                      {uni.university_name}
+                    </span>
                     {uni.state_province && (
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-muted-foreground truncate">
                         ({uni.state_province})
                       </span>
                     )}
@@ -409,7 +409,7 @@ const PublicProfile = () => {
         )}
       </div>
 
-      {/* Follow List Modal */}
+      {/* Modals */}
       {profile && (
         <FollowListModal
           isOpen={showFollowList}
@@ -421,7 +421,6 @@ const PublicProfile = () => {
         />
       )}
 
-      {/* XP Donation Modal */}
       {profile && !isOwnProfile && (
         <XPDonationModal
           isOpen={showDonationModal}

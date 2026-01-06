@@ -1,0 +1,665 @@
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+  SelectLabel,
+} from "@/components/ui/select";
+import { supabase } from "@/integrations/supabase/client";
+import { useDiscussionAuth } from "@/contexts/DiscussionAuthContext";
+import { useToast } from "@/hooks/use-toast";
+import { KawaiiMascot, getMoodFromAction } from "./KawaiiMascot";
+import { ImageUpload } from "./ImageUpload";
+import { GifPickerButton } from "./GifPickerButton";
+import { EmojiPickerButton } from "./EmojiPicker";
+import { pp_data } from "@/data/pp_data";
+import {
+  Send,
+  Save,
+  X,
+  Tag,
+  Plus,
+  FileText,
+  GraduationCap,
+  Users,
+  Search,
+  Globe,
+} from "lucide-react";
+import universitiesData from "@/data/world_universities_and_domains.json";
+import type { University } from "@/types/university";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { countryNameToCode } from "@/data/countrynametocode";
+
+const universities = universitiesData as University[];
+
+interface Tag {
+  id: string;
+  name: string;
+  color: string;
+  is_custom: boolean;
+}
+
+interface CustomDiscussion {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+interface PostComposerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  threadId: string;
+  onPostCreated: () => void;
+  discussionType?: string;
+  discussionId?: string;
+  editPost?: {
+    id: string;
+    title: string;
+    content: string;
+    question_number: number | null;
+    images: string[];
+    tagIds: string[];
+  } | null;
+}
+
+export const PostComposer = ({
+  isOpen,
+  onClose,
+  threadId,
+  onPostCreated,
+  discussionType = "general",
+  discussionId = "",
+  editPost,
+}: PostComposerProps) => {
+  const { user, refreshProfile } = useDiscussionAuth();
+  const { toast } = useToast();
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [questionNumber, setQuestionNumber] = useState<string>("");
+  const [images, setImages] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [availableTags, setAvailableTags] = useState<Tag[]>([]);
+  const [newTagName, setNewTagName] = useState("");
+  const [showNewTag, setShowNewTag] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [mascotMood, setMascotMood] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
+  // Discussion selection state
+  const [selectedDiscussionType, setSelectedDiscussionType] = useState(
+    discussionType || "paper"
+  );
+  const [selectedDiscussionId, setSelectedDiscussionId] = useState(
+    discussionId || ""
+  );
+  const [customDiscussions, setCustomDiscussions] = useState<
+    CustomDiscussion[]
+  >([]);
+
+  // University selection state
+  const [countrySearch, setCountrySearch] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [uniSearch, setUniSearch] = useState("");
+
+  // Get unique countries
+  const countries = [...new Set(universities.map((u) => u.country))].sort();
+  const filteredCountries = countries.filter((c) =>
+    c.toLowerCase().includes(countrySearch.toLowerCase())
+  );
+
+  // Get universities for selected country
+  const filteredUniversities = selectedCountry
+    ? universities
+        .filter((u) => u.country === selectedCountry)
+        .filter((u) => u.name.toLowerCase().includes(uniSearch.toLowerCase()))
+        .slice(0, 50)
+    : [];
+
+  // Get standard papers for dropdown
+  const standardPapers = pp_data.filter((p) => p.id && p.year && p.season);
+  const papersByYear = standardPapers.reduce((acc, paper) => {
+    if (!paper.year) return acc;
+    if (!acc[paper.year]) acc[paper.year] = [];
+    acc[paper.year].push(paper);
+    return acc;
+  }, {} as Record<number, typeof standardPapers>);
+  const years = Object.keys(papersByYear)
+    .map(Number)
+    .sort((a, b) => b - a);
+
+  useEffect(() => {
+    fetchTags();
+    fetchCustomDiscussions();
+  }, []);
+
+  const fetchCustomDiscussions = async () => {
+    const { data } = await supabase
+      .from("custom_discussions")
+      .select("id, name, slug")
+      .order("name");
+    if (data) setCustomDiscussions(data);
+  };
+
+  useEffect(() => {
+    if (editPost) {
+      setTitle(editPost.title);
+      setContent(editPost.content);
+      setQuestionNumber(editPost.question_number?.toString() || "");
+      setImages(editPost.images || []);
+      setSelectedTags(editPost.tagIds || []);
+    } else {
+      resetForm();
+    }
+  }, [editPost, isOpen]);
+
+  const fetchTags = async () => {
+    const { data } = await supabase.from("tags").select("*").order("name");
+    if (data) setAvailableTags(data);
+  };
+
+  const resetForm = () => {
+    setTitle("");
+    setContent("");
+    setQuestionNumber("");
+    setImages([]);
+    setSelectedTags([]);
+    setNewTagName("");
+    setShowNewTag(false);
+    setMascotMood("idle");
+    setSelectedDiscussionType(discussionType || "paper");
+    setSelectedDiscussionId(discussionId || "");
+    setCountrySearch("");
+    setSelectedCountry("");
+    setUniSearch("");
+  };
+
+  const handleAddTag = async () => {
+    if (!newTagName.trim() || !user) return;
+
+    const { data, error } = await supabase
+      .from("tags")
+      .insert({ name: newTagName.trim(), is_custom: true, created_by: user.id })
+      .select()
+      .single();
+
+    if (error) {
+      if (error.code === "23505") {
+        toast({ title: "Tag already exists", variant: "destructive" });
+      }
+      return;
+    }
+
+    setAvailableTags([...availableTags, data]);
+    setSelectedTags([...selectedTags, data.id]);
+    setNewTagName("");
+    setShowNewTag(false);
+  };
+
+  const toggleTag = (tagId: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tagId)
+        ? prev.filter((id) => id !== tagId)
+        : [...prev, tagId]
+    );
+  };
+
+  const handleSubmit = async (asDraft: boolean = false) => {
+    if (!user || !title.trim() || !content.trim()) {
+      toast({
+        title: "Please fill in title and content",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+    setMascotMood("loading");
+
+    try {
+      const postData = {
+        user_id: user.id,
+        thread_id: threadId && threadId.trim() !== "" ? threadId : null,
+        title: title.trim(),
+        content: content.trim(),
+        question_number: questionNumber ? parseInt(questionNumber) : null,
+        images,
+        is_draft: asDraft,
+        discussion_type: selectedDiscussionType,
+        discussion_id: selectedDiscussionId || null,
+      };
+
+      let postId: string;
+
+      if (editPost) {
+        const { error } = await supabase
+          .from("posts")
+          .update(postData)
+          .eq("id", editPost.id);
+
+        if (error) throw error;
+        postId = editPost.id;
+
+        // Remove old tags
+        await supabase.from("post_tags").delete().eq("post_id", postId);
+      } else {
+        const { data, error } = await supabase
+          .from("posts")
+          .insert(postData)
+          .select()
+          .single();
+
+        if (error) throw error;
+        postId = data.id;
+      }
+
+      // Add tags
+      if (selectedTags.length > 0) {
+        await supabase
+          .from("post_tags")
+          .insert(
+            selectedTags.map((tagId) => ({ post_id: postId, tag_id: tagId }))
+          );
+      }
+
+      setMascotMood("success");
+      toast({
+        title: asDraft
+          ? "Draft saved!"
+          : editPost
+          ? "Post updated!"
+          : "Post created! +2 XP 🎉",
+      });
+
+      resetForm();
+      onClose();
+      onPostCreated();
+      if (!asDraft && !editPost) refreshProfile();
+    } catch (error: any) {
+      setMascotMood("error");
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGifSelect = (gifUrl: string) => {
+    setImages([...images, gifUrl]);
+  };
+
+  const handleEmojiSelect = (emoji: string) => {
+    setContent((prev) => prev + emoji);
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <KawaiiMascot
+              character="speechBubble"
+              mood={getMoodFromAction(mascotMood)}
+              size={40}
+            />
+            {editPost ? "Edit Post" : "Create New Post"}
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="space-y-4">
+          {/* Discussion Type Selection - Only show if not pre-set */}
+          {!discussionId && (
+            <div className="space-y-2">
+              <Label className="flex items-center gap-2">
+                Post to Discussion
+              </Label>
+              <div className="flex gap-2 flex-wrap">
+                <Badge
+                  variant={
+                    selectedDiscussionType === "paper" ? "default" : "outline"
+                  }
+                  className="cursor-pointer"
+                  onClick={() => setSelectedDiscussionType("paper")}
+                >
+                  <FileText className="h-3 w-3 mr-1" />
+                  Past Paper
+                </Badge>
+                <Badge
+                  variant={
+                    selectedDiscussionType === "university"
+                      ? "default"
+                      : "outline"
+                  }
+                  className="cursor-pointer"
+                  onClick={() => setSelectedDiscussionType("university")}
+                >
+                  <GraduationCap className="h-3 w-3 mr-1" />
+                  University
+                </Badge>
+                <Badge
+                  variant={
+                    selectedDiscussionType === "custom" ? "default" : "outline"
+                  }
+                  className="cursor-pointer"
+                  onClick={() => setSelectedDiscussionType("custom")}
+                >
+                  <Users className="h-3 w-3 mr-1" />
+                  Community
+                </Badge>
+              </div>
+
+              {/* Paper Selection */}
+              {selectedDiscussionType === "paper" && (
+                <Select
+                  value={selectedDiscussionId}
+                  onValueChange={setSelectedDiscussionId}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a past paper..." />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-60">
+                    {years.map((year) => (
+                      <SelectGroup key={year}>
+                        <SelectLabel>{year}</SelectLabel>
+                        {papersByYear[year].map((paper) => (
+                          <SelectItem key={paper.id} value={paper.id}>
+                            {paper.year} {paper.season?.charAt(0).toUpperCase()}
+                            {paper.season?.slice(1)}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+
+              {/* Custom Discussion Selection */}
+              {selectedDiscussionType === "custom" && (
+                <Select
+                  value={selectedDiscussionId}
+                  onValueChange={setSelectedDiscussionId}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a community discussion..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {customDiscussions.length === 0 ? (
+                      <div className="py-2 px-3 text-sm text-muted-foreground">
+                        No discussions yet
+                      </div>
+                    ) : (
+                      customDiscussions.map((d) => (
+                        <SelectItem key={d.id} value={d.slug}>
+                          {d.name}
+                        </SelectItem>
+                      ))
+                    )}
+                  </SelectContent>
+                </Select>
+              )}
+
+              {/* University Selection */}
+              {selectedDiscussionType === "university" && (
+                <div className="space-y-2">
+                  {!selectedCountry ? (
+                    <>
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          value={countrySearch}
+                          onChange={(e) => setCountrySearch(e.target.value)}
+                          placeholder="Search country..."
+                          className="pl-10"
+                        />
+                      </div>
+                      <ScrollArea className="h-40 border rounded-md">
+                        <div className="p-2 space-y-1">
+                          {filteredCountries.map((country) => {
+                            const code = countryNameToCode[country]; // get the alpha-2 code from mapping
+                            return (
+                              <button
+                                key={country}
+                                onClick={() => setSelectedCountry(country)}
+                                className="w-full text-left px-3 py-2 rounded-md hover:bg-accent transition-colors flex items-center gap-2"
+                              >
+                                {code && (
+                                  <span
+                                    className={`fi fi-${code} mr-2`}
+                                    aria-label={country}
+                                  ></span>
+                                )}
+                                {country}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </ScrollArea>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-2">
+                        <Badge
+                          variant="secondary"
+                          className="flex items-center gap-1"
+                        >
+                          {selectedCountry &&
+                            countryNameToCode[selectedCountry] && (
+                              <span
+                                className={`fi fi-${countryNameToCode[selectedCountry]} h-3 w-3`}
+                                aria-label={selectedCountry}
+                              ></span>
+                            )}
+                          {selectedCountry}
+                        </Badge>
+
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            setSelectedCountry("");
+                            setSelectedDiscussionId("");
+                          }}
+                        >
+                          Change
+                        </Button>
+                      </div>
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          value={uniSearch}
+                          onChange={(e) => setUniSearch(e.target.value)}
+                          placeholder="Search university..."
+                          className="pl-10"
+                        />
+                      </div>
+                      <ScrollArea className="h-40 border rounded-md">
+                        <div className="p-2 space-y-1">
+                          {filteredUniversities.map((uni, idx) => {
+                            const slug = `${uni.alpha_two_code.toLowerCase()}-${uni.name
+                              .toLowerCase()
+                              .replace(/[^a-z0-9]+/g, "-")
+                              .substring(0, 50)}`;
+                            return (
+                              <button
+                                key={`${uni.name}-${idx}`}
+                                type="button"
+                                onClick={() => setSelectedDiscussionId(slug)}
+                                className={`w-full text-left px-3 py-2 rounded-md hover:bg-accent transition-colors text-sm
+                                  ${
+                                    selectedDiscussionId === slug
+                                      ? "bg-primary/10 border border-primary"
+                                      : ""
+                                  }`}
+                              >
+                                <div className="font-medium">{uni.name}</div>
+                                {uni["state-province"] && (
+                                  <div className="text-xs text-muted-foreground">
+                                    {uni["state-province"]}
+                                  </div>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </ScrollArea>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Title */}
+          <div className="space-y-2">
+            <Label>Title</Label>
+            <Input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="What's your question or topic?"
+            />
+          </div>
+
+          {/* Question Number - only for paper type */}
+          {selectedDiscussionType === "paper" && (
+            <div className="space-y-2">
+              <Label>Question Number (optional)</Label>
+              <Select
+                value={questionNumber || "none"}
+                onValueChange={(val) =>
+                  setQuestionNumber(val === "none" ? "" : val)
+                }
+              >
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Select Q#" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">None</SelectItem>
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                    <SelectItem key={num} value={num.toString()}>
+                      Q{num}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          {/* Content */}
+          <div className="space-y-2">
+            <Label>Content</Label>
+            <Textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="Describe your question or share your thoughts..."
+              rows={6}
+            />
+            <div className="flex gap-2">
+              <EmojiPickerButton onEmojiSelect={handleEmojiSelect} />
+              <GifPickerButton onGifSelect={handleGifSelect} />
+            </div>
+          </div>
+
+          {/* Images */}
+          <div className="space-y-2">
+            <Label>Images</Label>
+            <ImageUpload images={images} onImagesChange={setImages} />
+          </div>
+
+          {/* Tags */}
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2">
+              <Tag className="h-4 w-4" />
+              Tags
+            </Label>
+            <div className="flex flex-wrap gap-2">
+              {availableTags.map((tag) => (
+                <Badge
+                  key={tag.id}
+                  variant={
+                    selectedTags.includes(tag.id) ? "default" : "outline"
+                  }
+                  className="cursor-pointer transition-all"
+                  onClick={() => toggleTag(tag.id)}
+                >
+                  {tag.name}
+                  {selectedTags.includes(tag.id) && (
+                    <X className="h-3 w-3 ml-1" />
+                  )}
+                </Badge>
+              ))}
+
+              {showNewTag ? (
+                <div className="flex items-center gap-2">
+                  <Input
+                    value={newTagName}
+                    onChange={(e) => setNewTagName(e.target.value)}
+                    placeholder="New tag..."
+                    className="w-32 h-6 text-xs"
+                    onKeyDown={(e) => e.key === "Enter" && handleAddTag()}
+                  />
+                  <Button size="sm" variant="ghost" onClick={handleAddTag}>
+                    <Plus className="h-3 w-3" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => setShowNewTag(false)}
+                  >
+                    <X className="h-3 w-3" />
+                  </Button>
+                </div>
+              ) : (
+                <Badge
+                  variant="outline"
+                  className="cursor-pointer border-dashed"
+                  onClick={() => setShowNewTag(true)}
+                >
+                  <Plus className="h-3 w-3 mr-1" />
+                  Add Tag
+                </Badge>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <DialogFooter className="flex-col sm:flex-row gap-2">
+          <Button variant="outline" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => handleSubmit(true)}
+            disabled={loading}
+          >
+            <Save className="h-4 w-4 mr-2" />
+            Save Draft
+          </Button>
+          <Button onClick={() => handleSubmit(false)} disabled={loading}>
+            <Send className="h-4 w-4 mr-2" />
+            {loading ? "Posting..." : editPost ? "Update" : "Post (+2 XP)"}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+};

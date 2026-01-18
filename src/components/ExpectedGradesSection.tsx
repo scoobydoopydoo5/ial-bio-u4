@@ -12,7 +12,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { Beaker, Leaf, Heart, Save, GraduationCap } from "lucide-react";
+import {
+  Beaker,
+  Leaf,
+  Heart,
+  Save,
+  GraduationCap,
+  Dna,
+  Brain,
+  BrainCog,
+  HeartPulse,
+} from "lucide-react";
 import {
   Session,
   Subject,
@@ -22,6 +32,8 @@ import {
   getLetterGrades,
 } from "@/hooks/useResultsSettings";
 import { toast } from "@/hooks/use-toast";
+import { FaUserDoctor } from "react-icons/fa6";
+import { GiKidneys, GiLiver } from "react-icons/gi";
 
 interface ExpectedGradesSectionProps {
   session: Session;
@@ -32,7 +44,7 @@ interface ExpectedGradesSectionProps {
 const subjectIcons: Record<Subject, React.ReactNode> = {
   Chemistry: <Beaker className="h-4 w-4" />,
   Biology: <Leaf className="h-4 w-4" />,
-  "Human Bio": <Heart className="h-4 w-4" />,
+  "Human Bio": <HeartPulse className="h-4 w-4" />,
 };
 
 export const ExpectedGradesSection: React.FC<ExpectedGradesSectionProps> = ({

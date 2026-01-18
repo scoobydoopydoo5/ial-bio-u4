@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Settings, Maximize2, ArrowLeft } from "lucide-react";
+import {
+  Settings,
+  Maximize2,
+  ArrowLeft,
+  Calendar,
+  Trophy,
+  CreditCardIcon,
+  Book,
+  MedalIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FullscreenCountdown } from "@/components/Fullscreencountdowntimer";
 import { CountdownTimer } from "@/components/CountDownTimer";
@@ -44,12 +53,6 @@ const Planner: React.FC = () => {
                 Back to Home
               </Button>
             </Link>
-            <Link to="/timer/results">
-              <Button variant="outline" size="sm" className="flex items-center">
-                Results Countdown
-                <ArrowLeft className="h-4 w-4 ml-1 rotate-180" />
-              </Button>
-            </Link>
           </div>
           <h1 className="text-3xl font-bold text-foreground text-center">
             IAL Bio U4 Exam Countdown
@@ -83,6 +86,14 @@ const Planner: React.FC = () => {
             settings={timerSettings.settings}
             updateSettings={timerSettings.updateSettings}
           />
+        </div>
+        <div className="mt-6 flex justify-center">
+          <Link to="/timer/results">
+            <Button variant="secondary" size="lg">
+              Results Countdown <MedalIcon className="h-4 w-4 " />
+              <ArrowLeft className="h-4 w-4 rotate-180" />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

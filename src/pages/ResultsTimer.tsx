@@ -121,7 +121,7 @@ const ResultsTimer: React.FC = () => {
         </div>
 
         <h1 className="text-3xl font-bold text-foreground text-center">
-          📊 Results Day Countdown
+          Results Day Countdown
         </h1>
       </div>
 

@@ -127,7 +127,7 @@ export const SandTimer: React.FC<SandTimerProps> = ({ settings }) => {
         <p className="text-lg md:text-xl font-semibold mb-2">
           {timeData.remaining > 0
             ? formatTime(timeData.remaining)
-            : "Exam Day!"}
+            : "Jan Exam Over!"}
         </p>
         <p className="text-sm opacity-70">
           {timeData.remaining > 0 ? "until exam" : "Good luck!"}

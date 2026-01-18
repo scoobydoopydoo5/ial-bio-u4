@@ -179,9 +179,9 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ settings }) => {
 
       {timeUnits.length === 0 && (
         <div className="text-center">
-          <p className="text-xl md:text-2xl font-semibold">Exam Day!</p>
+          <p className="text-xl md:text-2xl font-semibold">Jan Exam Over!</p>
           <p className="text-sm md:text-base opacity-80 mt-2">
-            Good luck with your exam!
+            Good luck with your results!
           </p>
         </div>
       )}

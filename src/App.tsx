@@ -40,6 +40,7 @@ import PostDetail from "./pages/discussions/PostDetail";
 import { DraftsManager } from "./pages/discussions/DraftsManager";
 import UniversityThread from "./pages/discussions/UniversityThread";
 import CustomThread from "./pages/discussions/CustomThread";
+import ResultsTimer from "./pages/ResultsTimer";
 
 const queryClient = new QueryClient();
 
@@ -85,6 +86,7 @@ const App = () => (
                     <Route path="/game" element={<Game />} />
                     <Route path="/whatsapp" element={<Whatsapp />} />
                     <Route path="/chat" element={<Chat />} />
+                    <Route path="/timer/results" element={<ResultsTimer />} />
 
                     {/* Threads */}
                     <Route path="/threads" element={<Threads />} />

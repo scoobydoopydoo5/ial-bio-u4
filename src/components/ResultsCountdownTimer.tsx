@@ -176,7 +176,7 @@ export const ResultsCountdownTimer: React.FC<ResultsCountdownTimerProps> = ({
       )}
 
       <p className="mt-8 opacity-60 text-sm">
-        Results expected:{" "}
+        Results on:{" "}
         {resultsDate.toLocaleDateString("en-GB", {
           weekday: "long",
           day: "numeric",

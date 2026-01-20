@@ -27,7 +27,7 @@ export interface ResultsSettings {
 
 const getResultsDate = (session: Session): Date => {
   if (session === "oct2025") {
-    return new Date(2026, 0, 22, 9, 0, 0); // 22 Jan 2026, 9 AM
+    return new Date(2026, 0, 22, 12, 0, 0); // 22 Jan 2026, 12 PM
   }
   return new Date(2026, 2, 5, 9, 0, 0); // 5 March 2026, 9 AM
 };
@@ -93,7 +93,7 @@ export const useResultsSettings = () => {
   };
 
   const updateDisplaySettings = (
-    newDisplaySettings: Partial<ResultsTimerDisplaySettings>
+    newDisplaySettings: Partial<ResultsTimerDisplaySettings>,
   ) => {
     setSettings((prev) => {
       const updated = {
@@ -141,7 +141,7 @@ export const useResultsSettings = () => {
 export const getMaxMarks = (
   unit: number,
   mode: MarkMode,
-  subject: Subject
+  subject: Subject,
 ): number => {
   if (subject === "Human Bio") {
     return 180;

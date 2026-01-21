@@ -74,7 +74,7 @@ export const ResultsCountdownTimer: React.FC<ResultsCountdownTimerProps> = ({
         const elapsed = now - examDate;
         const progress = Math.min(
           100,
-          Math.max(0, (elapsed / totalTime) * 100)
+          Math.max(0, (elapsed / totalTime) * 100),
         );
 
         setProgressData({ progress });

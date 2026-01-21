@@ -8,6 +8,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { StyleProvider } from "./contexts/StyleContext";
 import { ThreadAuthProvider } from "./contexts/ThreadAuthContext";
 import { DiscussionAuthProvider } from "./contexts/DiscussionAuthContext";
+import ResultsTimerBunny from "./pages/ResultsTimerBunny";
 
 import Index from "./pages/Index";
 import Checklist from "./pages/Checklist";
@@ -65,6 +66,11 @@ const App = () => (
 
                 <BrowserRouter>
                   <Routes>
+                    {" "}
+                    <Route
+                      path="/timer/results/bunny"
+                      element={<ResultsTimerBunny />}
+                    />
                     {/* Core */}
                     <Route path="/" element={<Index />} />
                     <Route path="/notes/*" element={<NotesRouter />} />
@@ -87,12 +93,10 @@ const App = () => (
                     <Route path="/whatsapp" element={<Whatsapp />} />
                     <Route path="/chat" element={<Chat />} />
                     <Route path="/timer/results" element={<ResultsTimer />} />
-
                     {/* Threads */}
                     <Route path="/threads" element={<Threads />} />
                     <Route path="/threads/:slug" element={<ThreadDetail />} />
                     <Route path="/community/:slug" element={<Community />} />
-
                     {/* Discussions */}
                     <Route path="/discussions" element={<DiscussionsLayout />}>
                       <Route index element={<DiscussionsHome />} />
@@ -106,7 +110,6 @@ const App = () => (
                       />
                       <Route path="drafts" element={<DraftsManager />} />
                     </Route>
-
                     {/* Paper Threads */}
                     <Route
                       path="/discussion/:paperId"
@@ -114,14 +117,12 @@ const App = () => (
                     >
                       <Route index element={<PaperThread />} />
                     </Route>
-
                     <Route
                       path="/discussion/:paperId/post/:postId"
                       element={<DiscussionsLayout />}
                     >
                       <Route index element={<PostDetail />} />
                     </Route>
-
                     {/* University Discussions */}
                     <Route
                       path="/discussions/universities/:slug"
@@ -129,7 +130,6 @@ const App = () => (
                     >
                       <Route index element={<UniversityThread />} />
                     </Route>
-
                     {/* Custom Discussions */}
                     <Route
                       path="/discussion/:slug"
@@ -137,10 +137,8 @@ const App = () => (
                     >
                       <Route index element={<CustomThread />} />
                     </Route>
-
                     {/* Public Profile */}
                     <Route path="/p/:username" element={<PublicProfile />} />
-
                     {/* Catch-all */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

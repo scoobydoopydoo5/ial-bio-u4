@@ -5,6 +5,7 @@ import {
   RotateCcw,
   Calendar,
   Maximize2,
+  Rabbit,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -23,6 +24,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { GiRabbitHead } from "react-icons/gi";
 
 const ResultsTimer: React.FC = () => {
   const {
@@ -119,10 +121,20 @@ const ResultsTimer: React.FC = () => {
             </div>
           )}
         </div>
-
+        {/* 
         <h1 className="text-3xl font-bold text-foreground text-center">
           Results Day Countdown
-        </h1>
+        </h1> */}
+        <Link to="/timer/results/bunny">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2"
+          >
+            <GiRabbitHead className="h-4 w-4" />
+            Bunny mode?
+          </Button>
+        </Link>
       </div>
 
       {/* Session Selection Modal (First Visit) */}

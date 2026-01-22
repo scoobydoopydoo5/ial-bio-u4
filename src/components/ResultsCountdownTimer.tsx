@@ -171,7 +171,7 @@ export const ResultsCountdownTimer: React.FC<ResultsCountdownTimerProps> = ({
           >
             🎉 Results Day Over! 🎉
           </p>
-          <p className="text-lg opacity-80">Check your results now!</p>
+          <p className="text-lg opacity-80">Mabrook!</p>
         </div>
       )}
 

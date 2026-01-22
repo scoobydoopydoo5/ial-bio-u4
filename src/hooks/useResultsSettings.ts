@@ -27,9 +27,9 @@ export interface ResultsSettings {
 
 const getResultsDate = (session: Session): Date => {
   if (session === "oct2025") {
-    return new Date(2026, 0, 22, 12, 0, 0); // 22 Jan 2026, 12 PM
+    return new Date(2026, 0, 22, 11, 0, 0); // 22 Jan 2026, 12 PM
   }
-  return new Date(2026, 2, 5, 12, 0, 0); // 5 March 2026, 9 AM
+  return new Date(2026, 2, 5, 11, 0, 0); // 5 March 2026, 9 AM
 };
 
 const defaultDisplaySettings: ResultsTimerDisplaySettings = {

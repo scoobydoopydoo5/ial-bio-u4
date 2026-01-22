@@ -169,7 +169,7 @@ export const ResultsCountdownTimer: React.FC<ResultsCountdownTimerProps> = ({
             className="font-bold mb-2"
             style={{ fontSize: `${displaySettings.fontSize}px` }}
           >
-            🎉 Results Day! 🎉
+            🎉 Results Day Over! 🎉
           </p>
           <p className="text-lg opacity-80">Check your results now!</p>
         </div>

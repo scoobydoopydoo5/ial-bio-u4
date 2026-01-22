@@ -458,7 +458,7 @@ const ResultsTimerBunny: React.FC = () => {
           <motion.img
             src={BUNNY_GIF}
             alt="Anxious waiting bunny"
-            className="relative z-10 w-48 h-48 sm:w-64 sm:h-64 md:w-[400px] md:h-[400px] object-contain"
+            className=" relative z-10 w-48 h-48 sm:w-64 sm:h-64 md:w-[400px] md:h-[400px] object-contain "
             animate={{
               scale: [1, 1.02, 1],
             }}

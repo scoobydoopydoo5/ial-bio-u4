@@ -34,8 +34,21 @@ import { toast } from "sonner";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 
-const Checklist = () => {
-  const [state, setState] = useState<ChecklistState>(loadChecklistState);
+const Checklist5 = () => {
+  const [state, setState] = useState<ChecklistState>(() => {
+    const loadedState = loadChecklistState();
+    const filteredTopics = loadedState.topics
+      .filter((topic) => topic.id === "topic-7" || topic.id === "topic-8")
+      .map((topic) => ({
+        ...topic,
+        collapsed: false, // expand topic
+        lessons: topic.lessons.map((lesson) => ({
+          ...lesson,
+          collapsed: false, // expand lessons
+        })),
+      }));
+    return { ...loadedState, topics: filteredTopics };
+  });
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [tagsModalOpen, setTagsModalOpen] = useState(false);
   const [commentModalOpen, setCommentModalOpen] = useState(false);
@@ -522,10 +535,11 @@ const Checklist = () => {
     return objective;
   };
 
-  const visibleTopics = state.topics.filter(
-    (topic) => topic.id === "topic-5" || topic.id === "topic-6",
+  const visibleTopics = state.topics.filter((topic) => !topic.hidden);
+  const hiddenTopics = state.topics.filter((topic) => topic.hidden);
+  const filteredVisibleTopics = visibleTopics.filter(
+    (topic) => topic.id === "topic-7" || topic.id === "topic-8",
   );
-  const hiddenTopics = []; // we don’t want to show any hidden topics
   const colorThemes = [
     { name: "Orange", value: "orange" as const, color: "hsl(18, 95%, 60%)" },
     { name: "Blue", value: "blue" as const, color: "hsl(221, 83%, 53%)" },
@@ -552,126 +566,19 @@ const Checklist = () => {
             Back to Home
           </Button>
         </Link>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
-              Edexcel Unit 4 IAL Biology
-            </h1>
-            <p className="text-muted-foreground">
-              Track your progress through the syllabus
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={toggleTheme}
-              className="border-border hover:bg-secondary"
-            >
-              {theme === "light" ? (
-                <Moon className="h-4 w-4" />
-              ) : (
-                <Sun className="h-4 w-4" />
-              )}
-            </Button>
-            <div className="relative">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setColorThemeOpen(!colorThemeOpen)}
-                className="border-border hover:bg-secondary"
-              >
-                <Palette className="h-4 w-4" />
-              </Button>
-              {colorThemeOpen && (
-                <div className="absolute right-0 top-12 z-50 bg-card border border-border rounded-lg p-3 shadow-lg">
-                  <div className="flex gap-2">
-                    {colorThemes.map((ct) => (
-                      <button
-                        key={ct.value}
-                        onClick={() => {
-                          setColorTheme(ct.value);
-                          setColorThemeOpen(false);
-                          toast.success(`Theme changed to ${ct.name}`);
-                        }}
-                        className={`w-8 h-8 rounded-full border-2 transition-all ${
-                          colorTheme === ct.value
-                            ? "border-foreground scale-110"
-                            : "border-border hover:scale-105"
-                        }`}
-                        style={{ backgroundColor: ct.color }}
-                        title={ct.name}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setStyleSettingsOpen(true)}
-              className="border-border hover:bg-secondary"
-            >
-              <TypeIcon className="h-4 w-4" />
-            </Button>{" "}
-            <Button
-              asChild
-              variant="outline"
-              size="icon"
-              className="border-border hover:bg-secondary"
-            >
-              <a
-                href="https://drive.google.com/file/d/1sGtM7dLBFpcdtX1liaWrEvTJYMhXoX5n/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={toggleFullscreen}
-              className="border-border hover:bg-secondary"
-            >
-              {isFullscreen ? (
-                <Minimize className="h-4 w-4" />
-              ) : (
-                <Maximize className="h-4 w-4" />
-              )}
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setSettingsOpen(true)}
-              className="border-border hover:bg-secondary"
-            >
-              <Settings className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => setDownloadModalOpen(true)}
-              className="border-border hover:bg-secondary"
-            >
-              <Download className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => setAddObjectiveModalOpen(true)}
-              className="border-border hover:bg-secondary gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">Add</span>
-            </Button>
-          </div>
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
+            Edexcel Unit 5 IAL Biology{" "}
+          </h1>
+          <p className="text-muted-foreground">
+            Track your progress through the syllabus
+          </p>
         </div>
 
-        <ProgressBar topics={visibleTopics} />
+        <ProgressBar topics={filteredVisibleTopics} />
 
         <div className="space-y-4">
-          {visibleTopics.map((topic) => (
+          {filteredVisibleTopics.map((topic) => (
             <TopicSection
               key={topic.id}
               topic={topic}
@@ -844,4 +751,4 @@ const Checklist = () => {
   );
 };
 
-export default Checklist;
+export default Checklist5;

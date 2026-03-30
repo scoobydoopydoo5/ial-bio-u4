@@ -42,6 +42,7 @@ import { DraftsManager } from "./pages/discussions/DraftsManager";
 import UniversityThread from "./pages/discussions/UniversityThread";
 import CustomThread from "./pages/discussions/CustomThread";
 import ResultsTimer from "./pages/ResultsTimer";
+import Checklist5 from "./pages/Checklist_unit5";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,7 @@ const App = () => (
                     <Route path="/" element={<Index />} />
                     <Route path="/notes/*" element={<NotesRouter />} />
                     <Route path="/checklist" element={<Checklist />} />
+                    <Route path="/checklist-unit-5" element={<Checklist5 />} />
                     <Route path="/timer" element={<Planner />} />
                     <Route
                       path="/no-old-syllabus"
